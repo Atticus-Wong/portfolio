@@ -1,0 +1,14 @@
+import ArticleLayout from '@/components/ArticleLayout'
+
+export default function Layout({ children }) {
+  return <ArticleLayout>{children}</ArticleLayout>
+}
+
+### Proxmox, DevOps, and Personal Cloud Environments
+
+I was first introduced to Proxmox by a co-worker during the Summer of '25 while discussing Infrastructure as Code. Although it initially seemed perplexing, I decided it was worth at least thirty minutes of investigation. I ended up running Proxmox on my old high school laptop, which opened a whole can of worms and kickstarted my journey into self-hosting. 
+
+This article covers that journey, sharing how I reached my current setup along with various tricks I've picked up along the way. In fact, this very portfolio application is deployed through a Jenkins project and hosted on a Debian VM within my PVE!
+
+#### My Current setup
+![My Server Setup](/PVE_environment.png)

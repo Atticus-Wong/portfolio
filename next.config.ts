@@ -1,7 +1,15 @@
 import type { NextConfig } from "next";
+import createMDX from "@next/mdx";
+import remarkUnwrapImages from "remark-unwrap-images";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
 };
 
-export default nextConfig;
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [remarkUnwrapImages],
+  },
+});
+
+export default withMDX(nextConfig);
