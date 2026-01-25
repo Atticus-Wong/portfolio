@@ -4,9 +4,10 @@ import ZoomableImage from '@/components/ZoomableImage'
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     h1: ({ children }) => <h1 className="font-extrabold text-2xl max-w-[650px] mx-auto w-full">{children}</h1>,
-    h2: ({ children }) => <h2 className="font-bold text-xl mt-6 max-w-[650px] mx-auto w-full">{children}</h2>,
-    h3: ({ children }) => <h3 className="font-bold text-lg mt-6 max-w-[650px] mx-auto w-full">{children}</h3>,
-    h4: ({ children }) => <h3 className="font-bold mt-6 max-w-[650px] mx-auto w-full">{children}</h3>,
+    h2: ({ children }) => <h2 className="font-bold text-xl max-w-[650px] mx-auto w-full">{children}</h2>,
+    h3: ({ children }) => <h3 className="font-bold text-lg max-w-[650px] mx-auto w-full">{children}</h3>,
+    h4: ({ children }) => <h4 className="font-bold max-w-[650px] mx-auto w-full">{children}</h4>,
+    h5: ({ children }) => <h5 className="font-bold max-w-[650px] mx-auto w-full text-gray-600">{children}</h5>,
     p: ({ children }) => <p className="leading-relaxed font-medium max-w-[650px] mx-auto w-full">{children}</p>,
     a: ({ children, href }) => (
       <a 
