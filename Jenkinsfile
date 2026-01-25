@@ -72,14 +72,14 @@ pipeline {
                         sh """
                             ssh -i ${SSH_KEY} -o StrictHostKeyChecking=no ${SSH_USER}@${SSH_HOST} '
                                 # Pull the new image
-                                docker pull ${DOCKER_IMAGE}
+                                sudo docker pull ${DOCKER_IMAGE}
                                 
                                 # Stop and remove the old container (ignore error if not running)
-                                docker stop portfolio || true
-                                docker rm portfolio || true
+                                sudo docker stop portfolio || true
+                                sudo docker rm portfolio || true
                                 
                                 # Run the new container
-                                docker run -d \
+                                sudo docker run -d \
                                   --name portfolio \
                                   -p 127.0.0.1:3000 \
                                   --restart unless-stopped \
