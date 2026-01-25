@@ -10,7 +10,7 @@ pipeline {
         
         // Credentials IDs - Update these in Jenkins
         DOCKER_CREDENTIALS_ID = 'docker-hub-credentials'
-        SSH_CREDENTIALS_ID = 'automation-ssh-key'
+        SSH_CREDENTIALS_ID = 'AUTOMATION_SSH_KEY'
         
         // Deployment Target Details
         SSH_USER = 'user'
