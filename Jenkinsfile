@@ -13,7 +13,7 @@ pipeline {
         SSH_CREDENTIALS_ID = 'automation-ssh-key'
         
         // Deployment Target Details
-        SSH_USER = 'root'
+        SSH_USER = 'user'
         SSH_HOST = '192.168.0.240'
     }
 
@@ -65,29 +65,30 @@ pipeline {
             }
         }
 
-        stage('Deploy to Server') {
-            steps {
-                script {
-                    withCredentials([sshUserPrivateKey(credentialsId: SSH_CREDENTIALS_ID, keyFileVariable: 'SSH_KEY')]) {
-                        sh """
-                            ssh -i ${SSH_KEY} -o StrictHostKeyChecking=no ${SSH_USER}@${SSH_HOST} '
-                                # Pull the new image
-                                sudo docker pull ${DOCKER_IMAGE}
-                                
-                                # Stop and remove the old container (ignore error if not running)
-                                sudo docker stop portfolio || true
-                                sudo docker rm portfolio || true
-                                
-                                # Run the new container
+				stage('Deploy to Server') {
+						steps {
+								script {
+										withCredentials([sshUserPrivateKey(credentialsId: SSH_CREDENTIALS_ID, keyFileVariable: 'SSH_KEY')]) {
+												// Use triple double quotes for variable interpolation
+												sh """
+														ssh -i ${SSH_KEY} -o StrictHostKeyChecking=no ${SSH_USER}@${SSH_HOST} "
+																# Pull the new image
+																sudo docker pull ${DOCKER_IMAGE}
+																
+																# Stop and remove the old container
+																sudo docker stop portfolio || true
+																sudo docker rm portfolio || true
+																
+																# Run the new container
 																sudo docker run -d --name portfolio \
-																	-p 127.0.0.1:3000:3000 \
-																	--restart unless-stopped \
-                                  ${DOCKER_IMAGE}
-                            '
-                        """
-                    }
-                }
-            }
-        }
+																		-p 127.0.0.1:3000:3000 \
+																		--restart unless-stopped \
+																		${DOCKER_IMAGE}
+														"
+												"""
+										}
+								}
+						}
+				}
     }
 }
