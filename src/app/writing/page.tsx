@@ -5,7 +5,7 @@ export default function Writing() {
         <div className="font-extrabold text-lg">
           Writing
         </div>
-        <div className="text-gray-500">By Atticus Wong</div>
+        <div className="text-[#9f9f9f]">by Atticus Wong</div>
 
         <div className="font-medium mt-4">
           Here is a list of my writing:
@@ -13,7 +13,7 @@ export default function Writing() {
 
         <ul className="list-disc pl-5 font-medium mt-4">
           <li>
-            <a href="/proxmox" className="underline hover:text-gray-400">
+            <a href="/proxmox" className="underline">
               Proxmox, DevOps, and Personal Cloud Environments
             </a>
           </li>

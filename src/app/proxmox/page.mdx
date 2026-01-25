@@ -11,5 +11,11 @@ I was first introduced to Proxmox by a co-worker during the Summer of '25 while 
 
 This article covers that journey, sharing how I reached my current setup along with various tricks I've picked up along the way. In fact, this very portfolio application is deployed through a Jenkins project and hosted on a Debian VM within my PVE!
 
+#### Background
+For those new to the self-hosting space, Proxmox is a hypervisor/virtualization management platform that can split hardware resources and create VMs and LXCs, and offers a web-interface to manage your environment. The technology is simple but grounded, giving users the flexibility to choose architect their own PVE. 
+
+One of the biggest downsides to proxmox is it's network. A vanilla instance of proxmox is constrained to LAN, where a user can only interact with the VMs and containers under a shared network. This is where technologies like Wireguard and Tailscale powerfully unlock the full potential of Proxmox, turning a local service into what I like to call a **Personal Cloud Environment**. Tailscale and Wireguard are VPN services that create network tunnels, connecting devices across the internet as if they were on the same LAN, meaning you can access services from anywhere.
+
+
 #### My Current setup
 ![My Server Setup](/PVE_environment.png)
