@@ -1,7 +1,7 @@
 pipeline {
     agent { 
         node {
-            label 'default-docker' 
+            label 'docker-npm' 
             }
       }
     stages {
