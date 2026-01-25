@@ -79,10 +79,9 @@ pipeline {
                                 sudo docker rm portfolio || true
                                 
                                 # Run the new container
-                                sudo docker run -d \
-                                  --name portfolio \
-                                  -p 127.0.0.1:3000 \
-                                  --restart unless-stopped \
+																sudo docker run -d --name portfolio \
+																	-p 127.0.0.1:3000:3000 \
+																	--restart unless-stopped \
                                   ${DOCKER_IMAGE}
                             '
                         """
