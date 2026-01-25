@@ -1,7 +1,7 @@
 pipeline {
     agent { 
         node {
-            label 'docker-agent-debian' // remember to change this to the correct agent
+            label 'default-docker' 
             }
       }
     stages {
