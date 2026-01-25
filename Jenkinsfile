@@ -13,7 +13,7 @@ pipeline {
         SSH_CREDENTIALS_ID = 'automation-ssh-key'
         
         // Deployment Target Details
-        SSH_USER = 'user'
+        SSH_USER = 'root'
         SSH_HOST = '192.168.0.240'
     }
 
