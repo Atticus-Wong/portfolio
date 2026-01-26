@@ -16,7 +16,7 @@ export default function ZoomableImage({ src, alt, ...props }: ZoomableImageProps
         {...props}
         src={src}
         alt={alt}
-        className="rounded-xl shadow-lg w-full h-auto my-8 cursor-zoom-in hover:opacity-95 transition-opacity"
+        className="rounded-xl shadow-lg w-full h-auto my-4 cursor-zoom-in hover:opacity-95 transition-opacity"
         onClick={() => setIsOpen(true)}
       />
 

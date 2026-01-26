@@ -1,4 +1,5 @@
 import ArticleLayout from '@/components/ArticleLayout'
+import ZoomableImage from '@/components/ZoomableImage'
 
 export default function Layout({ children }) {
   return <ArticleLayout>{children}</ArticleLayout>
@@ -9,7 +10,7 @@ export default function Layout({ children }) {
 
 I was first introduced to Proxmox by a co-worker during the Summer of '25 while discussing Infrastructure as Code. Although it initially seemed perplexing, I decided it was worth at least thirty minutes of investigation. I ended up running Proxmox on my old high school laptop, which opened a whole can of worms and kickstarted my journey into self-hosting. 
 
-This article covers that journey, sharing how I reached my current setup along with various tricks I've picked up along the way. In fact, this very portfolio application is deployed through a Jenkins project and hosted on a Debian VM within my PVE!
+This article covers that journey, sharing my current setup along with various tricks I've picked up along the way. In fact, this very portfolio application is deployed through a Jenkins project and hosted on a Debian VM within my PVE!
 
 #### Background
 For those new to the self-hosting space, Proxmox is a hypervisor/virtualization management platform that can split hardware resources and create VMs and LXCs, and offers a web-interface to manage your environment. The technology is simple but grounded, giving users the flexibility to choose architect their own PVE. 
@@ -18,4 +19,30 @@ One of the biggest downsides to proxmox is it's network. A vanilla instance of p
 
 
 #### My Current setup
+
+My current setup is built around a suite of core applications consisting of Booklore for reading, Pi-hole for network-wide ad blocking, and Immich for self-hosted cloud photo storage. To manage automation and deployments, I also run a dedicated Jenkins instance hosted on a Debian virtual machine.
+
 ![My Server Setup](/PVE_environment.png)
+
+#### Building on Abstractions
+While the self-hosted apps are very handy and cost-efficient, the biggest benefit of my Proxmox instance are the things it has taught me about deployment, Cloud Infra, and DevOps. It's given me a tangible perspective on what it means to **build on top of abstractions**, specifically through VM spinups.
+
+VMs typically come without any pre-installed software, but as a software engineer, I prefer my environments to be production-ready and equipped with tools like Docker, curl, and my SSH keys. To achieve this, I built custom VM templates and cloud-init images on Proxmox, giving me the option to spinup pre-configured VMs. I took this a step further by creating an automation pipeline in Jenkins that provisions a VM on my PVE at the click of a button, complete with useful build parameters. By hiding the details of VM provisioning behind a simple interface, I've abstracted the infrastructure lifecycle, allowing me to jump straight to building and deploying applications on top of this automated layer.
+
+<div className="flex flex-col md:flex-row gap-4">
+  <div className="flex-1">
+    <ZoomableImage src="/Jenkins.png" alt="Jenkins instance" />
+  </div>
+  <div className="flex-1">
+    <ZoomableImage src="/pve_vm_spin.png" alt="PVE_VM_SPIN" />
+  </div>
+</div>
+
+> Note: The deployment of my portfolio is also abstracted away behind a Jenkins Pipeline!
+
+#### Next steps
+I hope to expand my homelab with more proxmox clusters, and eventually add some GPUs to play around with self-hosted LLMs.
+
+I'm still only just exploring the world of self-hosting and software engineering, and love to hear about your experience with homelabbing and self-hosting!
+
+
