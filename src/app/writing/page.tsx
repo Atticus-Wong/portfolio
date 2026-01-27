@@ -1,7 +1,7 @@
 export default function Writing() {
   return (
     <div className="flex min-h-screen pt-40 justify-center">
-      <div className="flex flex-col w-[650px]">
+      <div className="flex flex-col w-full max-w-[650px] px-6">
         <div className="font-extrabold text-lg">
           Writing
         </div>
