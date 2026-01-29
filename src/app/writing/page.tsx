@@ -11,12 +11,17 @@ export default function Writing() {
           Here is a list of my writing:
         </div>
 
-        <ul className="list-disc pl-5 font-medium mt-4">
+        <ul className="list-disc pl-5 font-medium mt-4 space-y-2">
           <li>
-            <a href="/proxmox" className="underline">
+            <a href="writing/proxmox" className="underline">
               Proxmox, DevOps, and Personal Cloud Environments
             </a>
           </li>
+					<li>
+            <a href="writing/agents" className="underline">
+              Building Agentic Systems
+            </a>
+					</li>
         </ul>
       </div>
     </div>

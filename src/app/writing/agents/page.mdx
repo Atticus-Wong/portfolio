@@ -1,0 +1,136 @@
+import ArticleLayout from '@/components/ArticleLayout'
+import ZoomableImage from '@/components/ZoomableImage'
+
+export default function Layout({ children }) {
+  return <ArticleLayout>{children}</ArticleLayout>
+}
+
+### Building Agentic Systems 
+##### February 2026 - Atticus Wong
+
+Over the past year, the term "agent" and "agentic" has been thrown around a bunch in the tech space. But what actually an AI Agent? Are they sentient assistants? Are they glorified scripts and tool callers? 
+
+AI Agents stand on the foundation of Large Language models and API calls. Companies have branded AI Agents as "the future of the white-collar industry," but I find them easier to digest when I view them as a few layers of abstractions stacked upon a foundational model. 
+
+Not to say that they aren't complex though.
+
+Over the past year, I've built various agentic systems through clients, companies, and personal projects. In this article, I'll break down how to engineers build AI Agents, useful frameworks and techniques to solve common problems, as well as some go-to features I gravitate towards when building them. I figure it would be worth sharing some of my thoughts on my approach to building production ready AI agents, specifically with LangGraph (+ similar frameworks).
+
+### Background
+At its core, AI Agents are just chains of LLM prompts linked together.
+
+LangGraph is an open-source framework that eases the process of chaining prompts together. Rather than having to make separate API calls to link prompts, LangGraph abstracts this away for you.
+
+LangGraph has a bunch of other features that make a chain of prompts that contribute to an "AI Agent." With some of the core features being **ephemeral memory** and **interrupts.**
+
+### Workflows
+The first step to building an agentic system is fleshing out the data flow. What kind of nodes should the data flow through? Sanitization, LLM-as-a-judge, and document generation are few I can think of. Here is a graph of what a process might look like for an AI Agent that generates SOPs and diagrams.
+
+![Agent Workflow Visual](/agent_workflow(2).png)
+
+### Logic
+Once the graph is built, we can start architecting the actual logic for each of the nodes. In the image above, the first node is an intentParser; here is what that might look like in code.
+
+```python
+async def intentParserNode(cxt: Context):
+    logger.info("BEGIN INTENT PARSING")
+    
+    # context
+    if not cxt["messages"]:
+        raise ValueError("No messages found in context.")
+    user_message = cxt["messages"][-1].content
+
+    PROMPT_INTENT_PARSER = f"""
+        You are an expert workflow architect tasked with understanding user intent and improving clarity.
+
+        Given an input message from a user describing a desired process, rewrite the message to be:
+        - Clear, concise, and professional
+        - Grammatically correct and easy to interpret
+        - Structured in a way suitable for automated process generation
+
+        Instructions:
+        1. Identify what type of process the user is requesting (e.g., onboarding, training, SOP, approval, etc.).
+        2. Rewrite the message in a way that makes the intent explicit.
+        3. Preserve all relevant details but remove filler, slang, or ambiguous phrasing.
+        4. Output only the improved message.
+
+        Example:
+        Input: "hey can u make me an onboarding thing for new hires"
+        Output: "Create an onboarding workflow for new employees, outlining required steps and resources."
+
+        ---
+
+        Now process the following message:
+        {user_message}
+        """
+    
+    optimized_message = await _invoke_llm(PROMPT_INTENT_PARSER, "intentParser")
+
+    cxt["messages"].append(AIMessage(content=optimized_message))
+	
+async def documentGeneration(cxt: Context):
+	# rest of node logic...
+```
+
+### Ephemeral memory
+One major feature that langGraph provides is **ephemeral memory.** This gives engineers the flexibility to hold and store important information and pass them on to next nodes. Notice that both the intentParser and documentGeneration nodes always takes in the same function signature: the Context. 
+
+The object storing the ephemeral memory can be designed however you see fit, here is an example below of a simple Context object.
+
+```python
+from langgraph.graph import MessagesState
+
+class Context(MessagesState):
+    diagram: str
+    document: str
+    is_satisfied: bool
+    chat_session_id: str
+```
+### Building your Agent
+Constructing the agent's workflow is as intuitive as connecting your defined nodes with edges to establish the sequence. When a step involves branching logic (aka the workflow must choose between multiple potential paths), you can implement conditional edges to dynamically route execution based on the current state.
+
+```python
+def build_agent():
+    graph = StateGraph(Context)
+
+    graph.add_node("intentParser", wrap_node(intentParserNode, "intentParser"))
+    graph.add_node(
+        "generateProcessDiagram",
+        wrap_node(generateProcessDiagramNode, "generateProcessDiagram"),
+    )
+    graph.add_node(
+        "generateDocument", wrap_node(generateDocumentNode, "generateDocument")
+    )
+    graph.add_node("validation", wrap_node(validationNode, "validation"))
+    graph.add_node(
+        "processIteration", wrap_node(processIterationNode, "processIteration")
+    )
+    graph.add_node("docIteration", wrap_node(docIterationNode, "docIteration"))
+    graph.add_node("tools", wrap_node(toolNode, "tools"))
+
+    graph.add_edge(START, "intentParser")
+    graph.add_edge("intentParser", "generateProcessDiagram")
+    graph.add_edge("generateProcessDiagram", "generateDocument")
+    graph.add_edge("generateDocument", "validation")
+
+    def should_iterate(ctx: Context) -> str:
+        return "tools" if ctx["is_satisfied"] else "docIteration"
+
+    graph.add_conditional_edges(
+        "validation",
+        should_iterate,
+        {"tools": "tools", "docIteration": "docIteration"},
+    )
+
+    graph.add_edge("docIteration", "processIteration")
+    graph.add_edge("processIteration", "validation")
+    graph.add_edge("tools", END)
+
+    return graph.compile()
+```
+> NOTE: the wrap_node function acts as decorator that supports streaming responses
+
+### Conclusion
+We are still in the early innings of agentic systems. Right now, we explicitly define every node and edge to constrain the chaos of LLMs. But as models improve in reasoning and cost-efficiency, these graphs will evolve from static workflows into dynamic, self-modifying systems.
+
+The future isn't just about smarter chatbots; it's about software that can reason through complex, multi-step problems with a level of autonomy we haven't seen before.

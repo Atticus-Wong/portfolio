@@ -1,5 +1,7 @@
 import type { MDXComponents } from 'mdx/types'
 import ZoomableImage from '@/components/ZoomableImage'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import rosePine from '@/styles/rose-pine'
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -33,6 +35,27 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         alt={props.alt || "Article image"}
       />
     ),
+    code: ({ children, className, ...props }) => {
+      const match = /language-(\w+)/.exec(className || '')
+      return match ? (
+        <div className="max-w-[650px] mx-auto w-full">
+          <SyntaxHighlighter
+            {...props}
+            PreTag="div"
+            language={match[1]}
+            style={rosePine}
+            customStyle={{ margin: 0, borderRadius: '0.5rem' }}
+            className="text-sm"
+          >
+            {String(children).replace(/\n$/, '')}
+          </SyntaxHighlighter>
+        </div>
+      ) : (
+        <code className="bg-gray-200 dark:bg-gray-800 rounded px-1 py-0.5 text-sm" {...props}>
+          {children}
+        </code>
+      )
+    },
     ...components,
   }
 }
