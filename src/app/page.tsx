@@ -14,11 +14,13 @@ export default function Home() {
 				</div>
 
 				<div className="font-medium">
-					You can view my portfolio,  <Link href="/writing" className="underline">read my writing</Link> or {" "}
+					You can {" "}
+					<Link href="/resume" className="underline">view my resumé,</Link> {" "}
+					<Link href="/writing" className="underline">read my writing</Link> or {" "}
 					<a href="https://github.com/Atticus-Wong" className="underline" target="_blank" rel="noopener noreferrer">code</a>, 
 					or {" "}
-					<a href="https://www.linkedin.com/in/atticus-wong/" className="underline" target="_blank" rel="noopener noreferrer">follow me online</a>. 
-					Reach out if interested.
+					<a href="https://www.linkedin.com/in/atticus-wong/" className="underline" target="_blank" rel="noopener noreferrer">follow me online</a>. {" "}
+					<a href="mailto:wongatticus.inc@gmail.com" className="underline">Reach out</a> if interested.
 				</div>
 			</div>
     </div>
