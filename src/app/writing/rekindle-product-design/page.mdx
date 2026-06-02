@@ -1,0 +1,75 @@
+import ArticleLayout from '@/components/ArticleLayout'
+
+export default function Layout({ children }) {
+  return <ArticleLayout>{children}</ArticleLayout>
+}
+
+### Rekindle and Designing User-Centric Applications
+##### June 2026 - Atticus Wong
+
+Product design is easiest to talk about when the user is abstract. We say things like "reduce friction," "build intuitive flows," and "meet users where they are." Those phrases are true, but they only become useful when they are tied to a real person with real constraints.
+
+Rekindle is a good example of that shift. The project is a companion application for elderly users who want to stay close to their families, but do not necessarily want to learn Instagram, Telegram, group chats, cloud photo albums, or whatever platform their grandchildren are using that week. Family members continue sharing in the places that already fit their lives. Rekindle turns those updates into a calm, readable, voice-guided experience for the elder.
+
+The product design challenge is not "how do we build another social feed?" It is "how do we make family life understandable for someone who has been left out by the interfaces everyone else accepts?"
+
+#### Start With Context, Not Features
+
+The primary Rekindle user is not a generic consumer. The product is designed around people like Maria, a Tagalog-speaking widow, or Henry, an older adult with early-stage memory loss. That changes the definition of good design.
+
+A younger user might tolerate dense navigation, hidden menus, infinite feeds, and icon-only actions because they have years of practice with digital interfaces. For an elder, those same patterns can create anxiety. The user is not failing the software; the software is asking for too much.
+
+That is why Rekindle's elder-facing surface is an always-on display instead of a conventional app dashboard. It uses large visuals, a slow interaction pace, family-member orbs, daily highlight cards, photo galleries, and a voice companion. The goal is not to expose every possible action. The goal is to make the next meaningful action obvious.
+
+That design choice matters because user-centric applications are not measured by how many features they contain. They are measured by whether the right user can reach the right outcome without feeling lost.
+
+#### Calm Is A Product Requirement
+
+Social feeds are optimized for motion, density, and recurrence. Rekindle has the opposite job. It needs to take messy family updates and make them feel safe to approach.
+
+An Instagram caption might include slang, hashtags, jokes, emojis, links, inside references, and a carousel of photos. A Telegram message might be part of a longer thread that makes sense only to people who were already there. Rekindle does not pass that noise directly to the elder. It normalizes the content into feed items, summarizes the moment, and presents it in simple language.
+
+This is where product design and system design meet. The feed pipeline is not just infrastructure. It is product behavior. Instagram and Telegram content is ingested, deduplicated, copied into object storage, attached to family members, summarized, categorized, and cached as daily highlights. The interface can then say, in a calmer way, what happened today.
+
+The user sees the design outcome, not the pipeline. But the pipeline exists because the design promised calmness.
+
+#### Accessibility Is More Than Larger Text
+
+Many accessibility conversations stop at font size, contrast, and touch targets. Those details matter, but Rekindle shows why they are not enough.
+
+For an older adult, accessibility also means:
+
+- language that avoids unnecessary detail
+- pacing that gives the user time to understand
+- navigation that does not require remembering where everything is
+- media descriptions for photos that may be hard to see
+- translation that preserves family names and context
+- interaction patterns that work through voice, not only taps
+
+Rekindle's ElevenLabs voice companion is an important design choice because it makes navigation conversational. The agent can select a family member, focus a highlight category, open the gallery, expand a photo, move next or previous, and return home. Voice is not a novelty layer on top of the product. It is part of the navigation model.
+
+That distinction is important. A voice assistant that only talks would still force the elder to operate the screen manually. Rekindle wires voice tools into the same UI state machine used by taps, so the spoken command and the visual interface stay synchronized.
+
+#### Design The Bridge, Not Just One Side
+
+Rekindle is elder-centered, but it is not elder-only. A product like this only works if family members can participate without changing their entire behavior.
+
+That is why the family-facing side includes flows for sending notes, uploading photos, managing family members, and connecting platforms. The design respects a simple truth: if contributing to Rekindle feels like extra work, relatives will stop doing it. The best version of the product lets family members keep sharing naturally while giving the elder a more accessible version of those moments.
+
+This two-sided design problem is easy to underestimate. The elder needs simplicity. The family needs convenience. The system in the middle has to translate between both needs without making either side feel like an afterthought.
+
+#### Treat AI As Interface Logic
+
+Rekindle uses AI for summarization, content simplification, translation, media descriptions, daily highlights, and future conversation prompts. The key product-design lesson is that AI should not be treated as a decorative feature. It should be held to the same standard as any other user-facing behavior.
+
+If a model describes too much, speculates about a photo, overstates emotion, or writes in a tone that feels unnatural, the product fails. For Rekindle, a good AI output is short, concrete, respectful, and useful in conversation. It should help an elder understand what their family did today, not impress them with generated prose.
+
+That requires constraint. Prompting, schemas, fallbacks, cached summaries, and reviewable internal tools are all product-design decisions because they shape what the user experiences. A user-centric AI product is not one that uses the most AI. It is one that uses AI only where it reduces the user's burden.
+
+#### The Takeaway
+
+Rekindle reminds me that product design is not just visual polish. It is the alignment between a person's needs, the interface they touch, and the system behind it.
+
+For this project, that meant designing around an elder who may speak another language, have limited vision, feel overwhelmed by modern apps, or simply want to know what their family did today. It meant letting family members stay in their own workflows while building a translation layer in between. It meant making technical choices that supported emotional goals: calmness, clarity, familiarity, and connection.
+
+That is the bar for user-centric applications. The product should not ask users to become more like the software. The software should become more considerate of the people it is meant to serve.

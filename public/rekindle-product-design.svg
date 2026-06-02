@@ -1,0 +1,28 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" fill="#F1F1F1"/>
+  <rect x="80" y="72" width="1060" height="560" rx="36" fill="#DEE2F2"/>
+  <circle cx="955" cy="184" r="82" fill="#D79A61" fill-opacity="0.32"/>
+  <circle cx="225" cy="526" r="120" fill="#DB6E08" fill-opacity="0.12"/>
+  <rect x="156" y="150" width="388" height="420" rx="30" fill="#F7F3EA"/>
+  <rect x="188" y="184" width="324" height="72" rx="20" fill="#DEE2F2"/>
+  <circle cx="228" cy="220" r="22" fill="#DB6E08"/>
+  <rect x="260" y="206" width="190" height="14" rx="7" fill="#2F2B2B" fill-opacity="0.8"/>
+  <rect x="260" y="230" width="124" height="12" rx="6" fill="#2F2B2B" fill-opacity="0.36"/>
+  <rect x="188" y="292" width="324" height="92" rx="22" fill="white" fill-opacity="0.78"/>
+  <rect x="218" y="322" width="196" height="13" rx="6.5" fill="#2F2B2B" fill-opacity="0.66"/>
+  <rect x="218" y="348" width="250" height="13" rx="6.5" fill="#2F2B2B" fill-opacity="0.32"/>
+  <rect x="188" y="416" width="324" height="92" rx="22" fill="white" fill-opacity="0.78"/>
+  <rect x="218" y="446" width="224" height="13" rx="6.5" fill="#2F2B2B" fill-opacity="0.66"/>
+  <rect x="218" y="472" width="174" height="13" rx="6.5" fill="#2F2B2B" fill-opacity="0.32"/>
+  <circle cx="710" cy="352" r="148" fill="#F7F3EA"/>
+  <circle cx="710" cy="330" r="54" fill="#D79A61"/>
+  <path d="M642 452C653 410 687 390 710 390C733 390 767 410 778 452H642Z" fill="#DB6E08" fill-opacity="0.82"/>
+  <path d="M688 316C693 304 701 292 710 280C719 292 727 304 732 316C737 330 733 349 710 349C687 349 683 330 688 316Z" fill="#FFB45C"/>
+  <rect x="850" y="274" width="210" height="178" rx="28" fill="white" fill-opacity="0.78"/>
+  <rect x="886" y="318" width="120" height="14" rx="7" fill="#2F2B2B" fill-opacity="0.66"/>
+  <rect x="886" y="352" width="156" height="14" rx="7" fill="#2F2B2B" fill-opacity="0.34"/>
+  <rect x="886" y="386" width="104" height="14" rx="7" fill="#2F2B2B" fill-opacity="0.34"/>
+  <path d="M812 358C830 358 839 336 852 330" stroke="#DB6E08" stroke-width="10" stroke-linecap="round"/>
+  <text x="156" y="660" fill="#2F2B2B" font-family="Helvetica, Arial, sans-serif" font-size="42" font-weight="700">Rekindle</text>
+  <text x="156" y="690" fill="#2F2B2B" fill-opacity="0.62" font-family="Helvetica, Arial, sans-serif" font-size="20">Product design for user-centric applications</text>
+</svg>
