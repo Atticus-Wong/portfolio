@@ -1,0 +1,18 @@
+import ArticleLayout from '@/components/ArticleLayout'
+import ZoomableImage from '@/components/ZoomableImage'
+
+export default function Layout({ children }) {
+  return <ArticleLayout>{children}</ArticleLayout>
+}
+
+### Preparing applications for hyperscaling
+##### August 2026 - Atticus Wong
+
+After one month at Oracle, I've had the opportunity to learn and deploy agents and applications for customers. 
+There are many requirements that come with such a task, but two stood out to me the most: security and scalability.
+
+Applications need to be architected with the intention to support millions of global customers. Applications need to take proper preventative measures to ensure user and customer data remains private and protected away from the hellscape of the public internet.
+
+Many modern CSPs (OCI, AWS, GCP, Azure) all offer an abundance of solutions that solve these gargantuan requirements, and I have had the opportunity to get my hands dirty and gain trench-deep understanding of OCI's networking, database, security, and identity services a SWE will need to secure and scale their apps and agents.
+
+

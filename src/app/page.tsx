@@ -9,8 +9,8 @@ export default function Home() {
 				</div>
 
 				<div className="font-medium">
-					Hi, I am a SWE in the Bay Area! I&apos;m currently a student @ UC Davis. I love learning about all things SWE-related 
-		 and recently have been exploring AI Agents and DevOps.
+					Hi, I am a SWE in the Bay Area working @ Oracle! I love learning about all things SWE-related 
+		 and recently have been exploring Agentic workflows, Networking, and Cloud Infra.
 				</div>
 
 				<div className="font-medium">
@@ -20,7 +20,7 @@ export default function Home() {
 					<a href="https://github.com/Atticus-Wong" className="underline" target="_blank" rel="noopener noreferrer">code</a>, 
 					or {" "}
 					<a href="https://www.linkedin.com/in/atticus-wong/" className="underline" target="_blank" rel="noopener noreferrer">follow me online</a>. {" "}
-					<a href="mailto:wongatticus.inc@gmail.com" className="underline">Reach out</a> if interested.
+					<a href="mailto:atticus@atticuswong.com" className="underline">Reach out</a> if interested.
 				</div>
 			</div>
     </div>
